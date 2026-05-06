@@ -1,75 +1,66 @@
-'use client'
+"use client";
 
-import React from 'react'
+import React from 'react';
 
-const planos = [
+const plans = [
   {
-    nome: "Iniciante",
-    preco: "0",
-    desc: "Perfeito para testar o motor.",
-    link: "https://buy.stripe.com/test_5kQfZj3Wt3th9w39sN3gk00",
-    destaque: false
+    name: "Iniciante",
+    price: "€0",
+    description: "Perfeito para testar o motor.",
+    buttonText: "Escolher Plano",
+    // Se tiveres um link para o grátis ou quiseres deixar apenas visual
+    link: "#", 
   },
   {
-    nome: "Pro",
-    preco: "49",
-    desc: "Aceleração total para o seu negócio.",
-    link: "https://buy.stripe.com/test_4gMfZjgJf4xldMj7kF3gk02",
-    destaque: true
+    name: "Pro",
+    price: "€49",
+    description: "Aceleração total para o seu negócio.",
+    buttonText: "Escolher Plano",
+    // Link do plano de 49 euros
+    link: "https://buy.stripe.com/test_51TTs6IRvHtj4AtDepE...", 
   },
   {
-    nome: "Elite",
-    preco: "99",
-    desc: "Controlo absoluto do mercado.",
-    link: "https://buy.stripe.com/test_4gMfZjgJf4xldMj7kF3gk02",
-    destaque: false
+    name: "Elite",
+    price: "€99",
+    description: "Controlo absoluto do mercado.",
+    buttonText: "Escolher Plano",
+    // NOVO LINK CORRIGIDO DE 99 EUROS
+    link: "https://buy.stripe.com/test_eVq7sN78Fe7V6jR48t3gk01", 
   }
-]
+];
 
-export default function Home() {
+export default function PricingPage() {
   return (
-    <div className="bg-black text-white min-h-screen p-8 font-sans">
-      <header className="text-center mb-16">
-        <h1 className="text-6xl font-black text-blue-500 mb-2">Já Perdes</h1>
-        <p className="text-xl text-gray-400">Software revelado para quem não tem tempo a perder.</p>
-      </header>
+    <div className="min-h-screen bg-black text-white py-20 px-10">
+      <div className="max-w-6xl mx-auto text-center">
+        <h1 className="text-5xl font-bold mb-4">Já Perdes</h1>
+        <p className="text-gray-400 mb-12 text-lg">
+          Software revisado para quem não tem tempo a perder.
+        </p>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-        {planos.map((plano) => (
-          <div 
-            key={plano.nome} 
-            className={`p-8 rounded-3xl border ${
-              plano.destaque ? 'border-blue-500 bg-blue-500/5 scale-105' : 'border-gray-800 bg-gray-900/50'
-            } flex flex-col items-center transition-all hover:border-blue-400`}
-          >
-            <h3 className="text-2xl font-bold mb-4">{plano.nome}</h3>
-            <div className="flex items-baseline mb-4">
-              <span className="text-4xl font-black">€{plano.preco}</span>
-              <span className="text-gray-500 ml-1 text-sm">/mês</span>
+        <div className="grid md:grid-cols-3 gap-8">
+          {plans.map((plan) => (
+            <div key={plan.name} className="border border-gray-800 p-8 rounded-2xl bg-zinc-900 flex flex-col justify-between">
+              <div>
+                <h2 className="text-2xl font-semibold mb-2">{plan.name}</h2>
+                <div className="text-4xl font-bold my-4">{plan.price}<span className="text-sm font-normal text-gray-500">/mês</span></div>
+                <p className="text-gray-400 mb-6">{plan.description}</p>
+              </div>
+              <a 
+                href={plan.link}
+                className="block w-full py-3 px-6 text-center rounded-lg font-medium transition-all bg-white text-black hover:bg-blue-600 hover:text-white"
+              >
+                {plan.buttonText}
+              </a>
             </div>
-            <p className="text-gray-400 text-center mb-8 h-12">{plano.desc}</p>
-            
-            <a 
-              href={plano.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`w-full py-3 rounded-full font-bold transition-all text-center ${
-                plano.destaque 
-                  ? 'bg-blue-600 text-white hover:bg-blue-700' 
-                  : 'bg-white text-black hover:bg-gray-200'
-              }`}
-            >
-              Escolher Plano
-            </a>
-          </div>
-        ))}
+          ))}
+        </div>
+        
+        <div className="mt-16 flex items-center justify-center gap-2 text-green-500 font-mono text-xs">
+          <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+          SISTEMA DE RENDA EXTRA ATIVO
+        </div>
       </div>
-
-      <footer className="text-center mt-20">
-        <span className="inline-block px-4 py-1 rounded-full border border-green-500/50 text-green-500 text-xs font-bold uppercase tracking-widest">
-          ● SISTEMA DE RENDA EXTRA ATIVO
-        </span>
-      </footer>
     </div>
-  )
+  );
 }
